@@ -21,36 +21,40 @@ const Login = () => {
         login(res.data[0]);
         navigate("/dashboard");
       } else {
-        setError("არასწორი მონაცემები!");
+        setError("იმეილი ან პაროლი არასწორია!");
       }
     } catch {
-      setError("სერვერთან კავშირი ვერ დამყარდა");
+      setError("სერვერთან კავშირი ვერ დამყარდა.");
     }
   };
 
   return (
-    <div className="container">
-      <div className="card">
-        <h2>შესვლა</h2>
-        {error && <p className="error-msg">{error}</p>}
-        <form onSubmit={handleSubmit}>
+    <div className="card">
+      <h2>ავტორიზაცია</h2>
+      {error && <p className="error-msg">{error}</p>}
+      <form onSubmit={handleSubmit}>
+        <div className="input-group">
+          <label>ელ-ფოსტა</label>
           <input
             type="email"
-            placeholder="ელ-ფოსტა"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
           />
+        </div>
+        <div className="input-group">
+          <label>პაროლი</label>
           <input
             type="password"
-            placeholder="პაროლი"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
           />
-          <button type="submit">შესვლა</button>
-        </form>
-      </div>
+        </div>
+        <button type="submit" className="btn btn-primary">
+          შესვლა
+        </button>
+      </form>
     </div>
   );
 };
